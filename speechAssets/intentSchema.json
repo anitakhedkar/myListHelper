@@ -33,7 +33,15 @@
           "type": "LIST_OF_STORES"
         }
       ]
+    },
+    {
+      "intent": "LaundryIntent",
+      "slots": [
+        {
+          "name": "chore",
+          "type": "LIST_OF_CHORES"
+        }
+      ]
     }
-
   ]
 }

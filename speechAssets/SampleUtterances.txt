@@ -9,3 +9,7 @@ MakeGroceryListIntent need {item} from {store}
 MakeGroceryListIntent pickup {item} from {store}
 MakeGroceryListIntent save {item} to my {store} list
 MakeGroceryListIntent save {item} to {store} list
+LaundryIntent remind me to do {chore}
+LaundryIntent do {chore}
+LaundryIntent have to do {chore}
+LaundryIntent {chore}

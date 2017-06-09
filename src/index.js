@@ -17,11 +17,53 @@ exports.handler = function(event, context) {
             let options = {};
             if (request.intent.name === "ReadGroceryListIntent") {
                 var storeName = request.intent.slots.store.value;
-                options.speechText = "This is your " + storeName + " list ";
+                //code added now
+                let scanningParameters = {
+                    TableName: 'ItemStoreList',
+                    //KeyConditionExpression: 'storeName = :storeName',
+                    FilterExpression: 'storeName = :storeName',
+                    ExpressionAttributeValues: {
+                        ":storeName": storeName
+                    },
+                    Limit: 5
+                };
+
+                var itemList = '';
+
+                docClient.scan(scanningParameters, function onScan(err, data) {
+                    if (err) {
+                        options.speechText = "there was an error " + err;
+                        // options.endSession = false;
+
+                    } else {
+                        data.Items.forEach(myfunction)
+                        options.speechText = "This is your " + storeName + " list " + itemList;
+                        if (typeof data.LastEvaluatedKey != "undefined") {
+                            scanningParameters.ExclusiveStartKey = data.LastEvaluatedKey;
+                            docClient.scan(scanningParameters, onScan);
+
+                        } else {
+                            context.succeed(buildResponse(options));
+
+                        }
+
+                    }
+
+                    function myfunction(iName) {
+                        console.log(iName)
+                        itemList += iName.itemName + ' ';
+                    }
+
+                });
+                //till here
+
+            } else if (request.intent.name === "LaundryIntent") {
+                let chore = request.intent.slots.chore.value;
+                options.speechText = "Dont bother. That is what husbands are for.";
                 options.endSession = false;
                 context.succeed(buildResponse(options));
-            }
-            if (request.intent.name === "MakeGroceryListIntent") {
+
+            } else if (request.intent.name === "MakeGroceryListIntent") {
                 let item = request.intent.slots.item.value;
                 let store = request.intent.slots.store.value;
 
@@ -64,7 +106,7 @@ function buildResponse(options) {
             },
             shouldEndSession: options.endSession
         }
-    }
+    };
     if (options.repromptText) {
         response.response.reprompt = {
             outputSpeech: {
