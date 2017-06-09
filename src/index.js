@@ -9,8 +9,8 @@ exports.handler = function(event, context) {
 
         if (request.type === "LaunchRequest") {
             let options = {};
-            options.speechText = "Welcome to dolist skill. I track your grocery lists. What can I do for you?";
-            options.repromptText = "Do you need any help with dolist skill?";
+            options.speechText = "Welcome to mylisthelper skill. I track your grocery lists. What can I do for you?";
+            options.repromptText = "Do you need any help with mylisthelper skill?";
             options.endSession = false;
             context.succeed(buildResponse(options));
         } else if (request.type === "IntentRequest") {
