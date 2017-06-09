@@ -1,0 +1,39 @@
+{
+  "intents": [
+    {
+      "intent": "WelcomeIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "MakeGroceryListIntent",
+      "slots": [
+        {
+          "name": "item",
+          "type": "LIST_OF_ITEMS"
+        },
+        {
+          "name": "store",
+          "type": "LIST_OF_STORES"
+        }
+      ]
+    },
+    {
+      "intent": "ReadGroceryListIntent",
+      "slots": [
+        {
+          "name": "store",
+          "type": "LIST_OF_STORES"
+        }
+      ]
+    }
+
+  ]
+}

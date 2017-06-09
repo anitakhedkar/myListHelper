@@ -1,0 +1,33 @@
+{
+  "session": {
+    "sessionId": "SessionId.baf826ba-7290-41e7-857d-2ab4894bd203",
+    "application": {
+      "applicationId": "amzn1.ask.skill.d58c050c-0a31-4f9e-ba72-a18421557e50"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AHU2PYSIFPRQMNSAVXT5WBDZCC5N5HKWH4HMINNHFIS6OKFZOAVSMOZPX5YSKREDU4FAZDIVKX3KTPITNHK7R5EGCSL74HSWE4UULIA5AER7PCZ6V6LSI5VBKOQWXZSZKFO3YGPPNCTOEX7YQRQVQ3COWZJPUCK5D7QMWCOWFW4KGJPSL47ZSPXCMKTLJTBYJNFT5O6XRLMJDGY"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.8112d278-7e10-450d-ad88-ace25ed92c07",
+    "locale": "en-US",
+    "timestamp": "2017-06-08T19:04:09Z",
+    "intent": {
+      "name": "MakeGroceryListIntent",
+      "slots": {
+        "item": {
+          "name": "item",
+          "value": "milk"
+        },
+        "store": {
+          "name": "store",
+          "value": "Costco"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

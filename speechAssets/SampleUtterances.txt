@@ -1,0 +1,11 @@
+WelcomeIntent say hello
+WelcomeIntent say welcome to myhelper skill
+
+MakeGroceryListIntent buy {item} from {store}
+MakeGroceryListIntent get {item} from {store}
+MakeGroceryListIntent {item} from {store}
+MakeGroceryListIntent want {item} from {store}
+MakeGroceryListIntent need {item} from {store}
+MakeGroceryListIntent pickup {item} from {store}
+MakeGroceryListIntent save {item} to my {store} list
+MakeGroceryListIntent save {item} to {store} list
