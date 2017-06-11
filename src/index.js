@@ -76,6 +76,7 @@ exports.handler = function(event, context) {
                                     console.log("EMAIL CODE END");
                                     console.log('EMAIL: ', email);
                                     // context.succeed(event);
+                                    options.endSession = false;
                                     context.succeed(buildResponse(options));
 
                                 }

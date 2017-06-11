@@ -1,6 +1,3 @@
-WelcomeIntent say hello
-WelcomeIntent say welcome to myhelper skill
-
 MakeGroceryListIntent buy {item} from {store}
 MakeGroceryListIntent get {item} from {store}
 MakeGroceryListIntent {item} from {store}
@@ -17,6 +14,7 @@ ReadGroceryListIntent what do I need to buy from {store}
 ReadGroceryListIntent what do I need from {store}
 ReadGroceryListIntent give me the {store} list
 
+LaundryIntent add {chore} to my chores list
 LaundryIntent remind me to do {chore}
 LaundryIntent do {chore}
 LaundryIntent have to do {chore}
