@@ -62,7 +62,7 @@ exports.handler = function(event, context) {
                                         Data: "your list for " + storeName
                                     }
                                 },
-                                Source: "anita.khedkar@gmail.com"
+                                Source: "mylisthelper@gmail.com"
                             };
 
                             console.log('===SENDING EMAIL===');
