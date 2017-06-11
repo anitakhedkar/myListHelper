@@ -9,6 +9,14 @@ MakeGroceryListIntent need {item} from {store}
 MakeGroceryListIntent pickup {item} from {store}
 MakeGroceryListIntent save {item} to my {store} list
 MakeGroceryListIntent save {item} to {store} list
+
+ReadGroceryListIntent get me the {store} list
+ReadGroceryListIntent get me my {store} list
+ReadGroceryListIntent what is my {store} list
+ReadGroceryListIntent what do I need to buy from {store}
+ReadGroceryListIntent what do I need from {store}
+ReadGroceryListIntent give me the {store} list
+
 LaundryIntent remind me to do {chore}
 LaundryIntent do {chore}
 LaundryIntent have to do {chore}

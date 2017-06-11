@@ -2,6 +2,9 @@
 
 const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
+//for email
+var ses = new AWS.SES({region: 'us-east-1'});
+//end for email
 
 exports.handler = function(event, context) {
     try {
@@ -24,8 +27,7 @@ exports.handler = function(event, context) {
                     FilterExpression: 'storeName = :storeName',
                     ExpressionAttributeValues: {
                         ":storeName": storeName
-                    },
-                    Limit: 5
+                    }
                 };
 
                 var itemList = '';
@@ -36,14 +38,51 @@ exports.handler = function(event, context) {
                         // options.endSession = false;
 
                     } else {
-                        data.Items.forEach(myfunction)
+                        data.Items.forEach(myfunction);
                         options.speechText = "This is your " + storeName + " list " + itemList;
+
                         if (typeof data.LastEvaluatedKey != "undefined") {
                             scanningParameters.ExclusiveStartKey = data.LastEvaluatedKey;
                             docClient.scan(scanningParameters, onScan);
 
                         } else {
-                            context.succeed(buildResponse(options));
+                            // context.succeed(buildResponse(options));
+                            //email content here
+                            var eParams = {
+                                Destination: {
+                                    ToAddresses: ["anita.khedkar@gmail.com"]
+                                },
+                                Message: {
+                                    Body: {
+                                        Text: {
+                                            Data: itemList
+                                        }
+                                    },
+                                    Subject: {
+                                        Data: "your list for " + storeName
+                                    }
+                                },
+                                Source: "anita.khedkar@gmail.com"
+                            };
+
+                            console.log('===SENDING EMAIL===');
+                            var email = ses.sendEmail(eParams, function(err, data) {
+                                if (err)
+                                    console.log(err);
+                                else {
+                                    console.log("===EMAIL SENT===");
+                                    console.log(data);
+
+                                    console.log("EMAIL CODE END");
+                                    console.log('EMAIL: ', email);
+                                    // context.succeed(event);
+                                    context.succeed(buildResponse(options));
+
+                                }
+                            });
+
+                            //end email content here
+                            //context.succeed(buildResponse(options));
 
                         }
 
