@@ -12,7 +12,7 @@ exports.handler = function(event, context) {
 
         if (request.type === "LaunchRequest") {
             let options = {};
-            options.speechText = "Welcome to mylisthelper skill. I track your grocery lists. What can I do for you?";
+            options.speechText = "Welcome to mylisthelper skill. I track your grocery and chores lists. What can I do for you?";
             options.repromptText = "Do you need any help with mylisthelper skill?";
             options.endSession = false;
             context.succeed(buildResponse(options));
@@ -31,6 +31,7 @@ exports.handler = function(event, context) {
                 };
 
                 var itemList = '';
+                var itemListForEmail = '';
 
                 docClient.scan(scanningParameters, function onScan(err, data) {
                     if (err) {
@@ -39,7 +40,7 @@ exports.handler = function(event, context) {
 
                     } else {
                         data.Items.forEach(myfunction);
-                        options.speechText = "This is your " + storeName + " list " + itemList;
+                        options.speechText = 'This is your ' + storeName + ' list<break time="1s"/>' + itemList;
 
                         if (typeof data.LastEvaluatedKey != "undefined") {
                             scanningParameters.ExclusiveStartKey = data.LastEvaluatedKey;
@@ -55,7 +56,7 @@ exports.handler = function(event, context) {
                                 Message: {
                                     Body: {
                                         Text: {
-                                            Data: itemList
+                                            Data: itemListForEmail
                                         }
                                     },
                                     Subject: {
@@ -91,7 +92,8 @@ exports.handler = function(event, context) {
 
                     function myfunction(iName) {
                         console.log(iName)
-                        itemList += iName.itemName + ' ';
+                        itemList += iName.itemName + '<break time="1s"/>';
+                        itemListForEmail += iName.itemName + ' ';
                     }
 
                 });
