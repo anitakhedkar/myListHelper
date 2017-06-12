@@ -93,7 +93,8 @@ exports.handler = function(event, context) {
                     function myfunction(iName) {
                         console.log(iName)
                         itemList += iName.itemName + '<break time="1s"/>';
-                        itemListForEmail += iName.itemName + ' ';
+                        //itemListForEmail += iName.itemName + ' ';
+                        itemListForEmail += iName.itemName + `\n`;
                     }
 
                 });
